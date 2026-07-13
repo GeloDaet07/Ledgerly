@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledgerly</title>
+  <link rel="stylesheet" href="/src/scss/main.scss">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside id="app-sidebar" class="sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <div class="logo">Ledgerly</div>
+      </div>
+      <button type="button" id="add-transaction-btn" class="btn btn-primary btn-block">Add Transaction</button>
+      <nav>
+        <ul class="nav-list">
+          <li><button type="button" id="nav-overview-btn" class="nav-btn active">Overview</button></li>
+          <li><button type="button" id="nav-cash-flow-btn" class="nav-btn">Cash Flow</button></li>
+          <li><button type="button" id="nav-manage-btn" class="nav-btn">Manage</button></li>
+          <li><button type="button" id="nav-settings-btn" class="nav-btn">Settings</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="mobile-header">
+        <button type="button" id="sidebar-toggle-btn" class="icon-btn" aria-controls="app-sidebar" aria-expanded="false" aria-label="Toggle Navigation">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <div class="mobile-logo">Ledgerly</div>
+      </header>
+
+      <!-- Overview Section -->
+      <section id="overview-section" aria-labelledby="overview-title">
+        <h1 id="overview-title" class="section-title">Overview</h1>
+        
+        <div class="summary-cards">
+          <div class="card summary-card">
+            <h2 class="card-title">Total Balance</h2>
+            <div id="total-balance" class="card-value">₱0.00</div>
+          </div>
+          <div class="card summary-card">
+            <h2 class="card-title">Total Income</h2>
+            <div id="total-income" class="card-value success">₱0.00</div>
+          </div>
+          <div class="card summary-card">
+            <h2 class="card-title">Total Expense</h2>
+            <div id="total-expense" class="card-value danger">₱0.00</div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <h2 class="section-subtitle">Recent Transactions</h2>
+          <table aria-label="Recent Transactions">
+            <caption>Recent account activity</caption>
+            <thead>
+              <tr>
+                <th scope="col">Transaction</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="recent-transactions-body">
+              <!-- Placeholder row for visual -->
+              <tr>
+                <td>Groceries</td>
+                <td class="danger">-₱50.00</td>
+                <td>2026-07-13</td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-outline" data-action="view-transaction" aria-label="View transaction details">View</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Create/Edit Transaction Section -->
+      <section id="transaction-form-section" class="hidden" aria-labelledby="transaction-form-title">
+        <h1 id="transaction-form-title" class="section-title">Transaction</h1>
+        <div class="input-record">
+          <form id="transaction-form">
+            <div id="transaction-form-error" class="form-error" aria-live="polite"></div>
+            
+            <div class="form-group">
+              <label for="transaction-type">Type</label>
+              <select id="transaction-type" name="transaction-type" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+                <option value="transfer">Transfer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="transaction-title">Title</label>
+              <input type="text" id="transaction-title" name="transaction-title" required>
+            </div>
+
+            <div class="form-group">
+              <label for="transaction-description">Description</label>
+              <textarea id="transaction-description" name="transaction-description"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="transaction-amount">Amount</label>
+              <input type="number" id="transaction-amount" name="transaction-amount" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+              <label for="transaction-date">Date</label>
+              <input type="date" id="transaction-date" name="transaction-date" required>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="transaction-cancel-btn" class="btn btn-outline">Cancel</button>
+              <button type="submit" id="transaction-submit-btn" class="btn btn-primary">Save Transaction</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Cash Flow Section -->
+      <section id="cash-flow-section" class="hidden" aria-labelledby="cash-flow-title">
+        <h1 id="cash-flow-title" class="section-title">Cash Flow</h1>
+        <div class="table-container">
+          <table aria-label="Transaction History">
+            <caption>Full transaction history</caption>
+            <thead>
+              <tr>
+                <th scope="col">Transaction</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="all-transactions-body">
+              <!-- Placeholder row for visual -->
+              <tr>
+                <td>Salary</td>
+                <td class="success">+₱3,000.00</td>
+                <td>2026-07-01</td>
+                <td>
+                  <div class="action-buttons">
+                    <button type="button" class="btn btn-sm btn-outline" data-action="edit-transaction" aria-label="Edit transaction">Edit</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-action="delete-transaction" aria-label="Delete transaction">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Manage Section -->
+      <section id="manage-section" class="hidden" aria-labelledby="manage-title">
+        <h1 id="manage-title" class="section-title">Manage</h1>
+        <div id="accounts-list">
+          <!-- Placeholder for accounts list -->
+          <p>Accounts management placeholder.</p>
+        </div>
+      </section>
+
+      <!-- Settings Section -->
+      <section id="settings-section" class="hidden" aria-labelledby="settings-title">
+        <h1 id="settings-title" class="section-title">Settings</h1>
+        <p>Application settings placeholder.</p>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/src/js/app.js"></script>
+</body>
+</html>

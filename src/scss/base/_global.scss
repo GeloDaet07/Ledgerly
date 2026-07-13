@@ -1,0 +1,21 @@
+@use '../abstracts/variables' as *;
+
+:root {
+  --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-surface-hover: #{$color-surface-hover};
+  --color-text: #{$color-text};
+  --color-text-muted: #{$color-text-muted};
+  --color-border: #{$color-border};
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.success { color: $color-success; }
+.danger { color: $color-danger; }

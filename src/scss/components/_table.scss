@@ -1,0 +1,47 @@
+@use '../abstracts/variables' as *;
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--color-surface);
+  border-radius: $border-radius-lg;
+  border: $border-width solid var(--color-border);
+  box-shadow: $shadow-sm;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  caption {
+    display: none !important;
+  }
+
+  th, td {
+    padding: $spacing-md;
+    border-bottom: $border-width solid var(--color-border);
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background-color: var(--color-surface-hover);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background-color: var(--color-surface-hover);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: $spacing-sm;
+}

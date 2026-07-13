@@ -1,0 +1,57 @@
+@use '../abstracts/variables' as *;
+
+.input-record {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--color-surface);
+  padding: $spacing-xl;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  border: $border-width solid var(--color-border);
+}
+
+.form-group {
+  margin-bottom: $spacing-lg;
+
+  label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: $spacing-xs;
+    color: var(--color-text);
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: $border-width solid var(--color-border);
+    border-radius: $border-radius-md;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-md;
+  margin-top: $spacing-xl;
+}
+
+.form-error {
+  color: $color-danger;
+  font-size: 0.875rem;
+  margin-bottom: $spacing-md;
+  min-height: 1.25rem;
+}

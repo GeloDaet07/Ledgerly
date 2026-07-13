@@ -1,0 +1,65 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding: $spacing-md;
+
+  @include respond-to(tablet) {
+    margin-left: 250px;
+    padding: $spacing-xl $spacing-xxl;
+  }
+}
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding-bottom: $spacing-md;
+  margin-bottom: $spacing-md;
+  border-bottom: $border-width solid var(--color-border);
+
+  @include respond-to(tablet) {
+    display: none;
+  }
+
+  .mobile-logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: $color-primary;
+  }
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--color-surface);
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  border: $border-width solid var(--color-border);
+  box-shadow: $shadow-sm;
+
+  .card-title {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-sm;
+    font-weight: 600;
+  }
+}

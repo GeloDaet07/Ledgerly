@@ -1,0 +1,74 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: $border-width solid transparent;
+  background: transparent;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+}
+
+.btn-outline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+}
+
+.btn-danger {
+  color: $color-danger;
+  border-color: $color-danger;
+  
+  &:hover {
+    background-color: $color-danger;
+    color: white;
+  }
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: $spacing-xs $spacing-sm;
+  font-size: 0.875rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-xs;
+  color: var(--color-text);
+  border-radius: $border-radius-sm;
+
+  &:hover {
+    background-color: var(--color-surface);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
