@@ -14,12 +14,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-export function addTransaction(transaction) {
+export async function addTransaction(transaction) {
   const transactionsCollection = collection(db, "transactions");
-  return addDoc(transactionsCollection, {...transaction});
+  return await addDoc(transactionsCollection, {...transaction});
 }
 
 export async function getTransactions() {

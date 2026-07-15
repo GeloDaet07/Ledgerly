@@ -1,7 +1,8 @@
 export function navigationController() {
+  const addTransactionButton = document.getElementById('add-transaction-btn');
   const navButton = document.querySelectorAll('.nav-btn');
   const allSections = document.querySelectorAll('section');
-
+  
   navButton.forEach(button => {
     button.addEventListener('click', (event) => {
       const clickedNavButton = event.currentTarget;
@@ -16,5 +17,15 @@ export function navigationController() {
       allSections.forEach(section => section.classList.add('hidden'));
       targetSection.classList.remove('hidden');
     });
+  });
+
+  addTransactionButton.addEventListener('click', () => {
+    // Show the transaction form section and hide all other sections
+    const transactionFormSection = document.getElementById('transaction-form-section');
+    allSections.forEach(section => section.classList.add('hidden'));
+    transactionFormSection.classList.remove('hidden');
+
+    // Remove the active class from all nav buttons
+    navButton.forEach(btn => btn.classList.remove('active'));
   });
 }

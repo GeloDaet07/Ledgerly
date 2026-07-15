@@ -1,11 +1,11 @@
 class TransactionFormView {
     constructor() {
         this.form = document.getElementById('transaction-form');
-        this.amountInput = document.getElementById('amount');
-        this.descriptionInput = document.getElementById('description');
-        this.dateInput = document.getElementById('date');
-        this.typeSelect = document.getElementById('type');
-        this.titleInput = document.getElementById('title');
+        this.typeSelect = document.getElementById('transaction-type');
+        this.titleInput = document.getElementById('transaction-title');
+        this.descriptionInput = document.getElementById('transaction-description');
+        this.amountInput = document.getElementById('transaction-amount');
+        this.dateInput = document.getElementById('transaction-date');  
     };
 
     bindSubmitTransaction(handler) {
