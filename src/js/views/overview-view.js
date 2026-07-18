@@ -17,29 +17,37 @@ class OverviewView {
 
         const totalBalance = totalIncome - totalExpense;
 
-        this.BalanceContainer.textContent = `$${totalBalance.toFixed(2)}`;
-        this.IncomeContainer.textContent = `$${totalIncome.toFixed(2)}`;
-        this.ExpenseContainer.textContent = `$${totalExpense.toFixed(2)}`;
+        this.BalanceContainer.textContent = `₱${totalBalance.toFixed(2)}`;
+        this.IncomeContainer.textContent = `₱${totalIncome.toFixed(2)}`;
+        this.ExpenseContainer.textContent = `₱${totalExpense.toFixed(2)}`;
     }
 
     renderRecentTransactions(transactions) {
         // Clear existing transactions
         this.overviewContainer.innerHTML = '';
 
-        // Get the last 5 transactions
-        const recentTransactions = transactions.slice(-5).reverse(); 
+        // Get the last 10 transactions
+        const recentTransactions = transactions.slice(-10).reverse(); 
 
-        // TODO: button should be view button, not edit button. Fix this in the future.
         recentTransactions.forEach(transaction => {
             const transactionRow = document.createElement('tr');
             transactionRow.innerHTML = `
                 <td>${transaction.title}</td>
-                <td>$${transaction.amount.toFixed(2)}</td>
+                <td>₱${transaction.amount.toFixed(2)}</td>
                 <td>${new Date(transaction.date).toLocaleDateString()}</td>
-                <td>button class="edit-btn" data-id="${transaction.id}">Edit</button>
+                <td><button class="view-btn" data-id="${transaction.id}">View</button></td>
             `;
             this.overviewContainer.appendChild(transactionRow);
         });
+    }
+
+    bindViewTransaction(handler){
+        this.overviewContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('view-btn')) {
+                const transactionId = event.target.getAttribute('data-id');
+                handler(transactionId);
+            }
+        })
     }
 }
 

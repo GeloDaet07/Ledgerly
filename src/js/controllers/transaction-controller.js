@@ -1,5 +1,5 @@
-import { addTransaction } from '../services/firebase-service.js';
-import { getTransactions } from '../services/firebase-service.js';
+import { addTransaction, getTransactions, updateTransaction } from '../services/firebase-service.js';
+import { openTransaction } from './navigation-controller.js';
 import TransactionFormView from '../views/transaction-form-view.js';
 import CashFlowView from '../views/cash-flow-view.js';
 import OverviewView from '../views/overview-view.js';
@@ -9,26 +9,43 @@ export function transactionController(transactionData) {
     const transactionFormView = new TransactionFormView();
     const cashFlowView = new CashFlowView();
     const overviewView = new OverviewView();
+    let allTransactions = [];
 
     async function loadAndRenderTransactions() {
-        await getTransactions().then(transactions => {
-                overviewView.updateSummary(transactions);
-                overviewView.renderRecentTransactions(transactions);
-                cashFlowView.renderTransactions(transactions);
-        });
+        try {
+            const transactions = await getTransactions();
+
+            overviewView.updateSummary(transactions);
+            overviewView.renderRecentTransactions(transactions);
+            cashFlowView.renderTransactions(transactions);
+
+            allTransactions = transactions;
+
+        } catch (error) {
+            console.error('Error loading transactions:', error);
+            alert("Failed to load transactions. Please check your connection.");
+        }
     }
 
     async function handleNewTransaction(transactionData) {
         try{
+            const transactionId = transactionData.id ? transactionData.id : Date.now().toString();
+            const isEditing = Boolean(transactionData.id);
+
             const newTransaction = new Transaction(
-                transactionData.id = Date.now().toString(), // Generate a unique ID based on the current timestamp
+                transactionData.id = transactionId, 
                 transactionData.type,
                 transactionData.title,
                 transactionData.description,
                 transactionData.amount,
                 transactionData.date
             );
-            await addTransaction(newTransaction);
+
+            if (isEditing === true){
+                await updateTransaction(newTransaction);
+            } else {
+                await addTransaction(newTransaction);
+            }
             transactionFormView.clearForm();
             await loadAndRenderTransactions();
         }
@@ -38,7 +55,15 @@ export function transactionController(transactionData) {
         }
     }
 
+    function handleEditClick(transanctionId){
+        const editTransaction = allTransactions.find((item) => item.id === transanctionId);
+        console.log(editTransaction);
+        transactionFormView.populateForm(editTransaction);
+        openTransaction();
+    }
+    
     transactionFormView.bindSubmitTransaction(handleNewTransaction);
+    cashFlowView.bindEditTransaction(handleEditClick);
     loadAndRenderTransactions();
 }
 

@@ -72,3 +72,41 @@
     outline-offset: 2px;
   }
 }
+
+// Table action buttons
+.view-btn, .edit-btn, .delete-btn {
+  @extend .btn;
+  @extend .btn-sm;
+  background-color: transparent;
+}
+
+.view-btn {
+  border-color: $color-primary;
+  color: $color-primary;
+  
+  &:hover {
+    background-color: $color-primary;
+    color: white;
+  }
+}
+
+.edit-btn {
+  border-color: $color-success;
+  color: $color-success;
+  margin-right: $spacing-xs;
+  
+  &:hover {
+    background-color: $color-success;
+    color: white;
+  }
+}
+
+.delete-btn {
+  border-color: $color-danger;
+  color: $color-danger;
+  
+  &:hover {
+    background-color: $color-danger;
+    color: white;
+  }
+}

@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ledgerly</title>
-  <script type="module" crossorigin src="/assets/index-CNMIp_TJ.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CeIvXVwk.css">
+  <script type="module" crossorigin src="/assets/index-GDwfu3Iq.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Cg5QfkJS.css">
 </head>
 <body>
   <div class="app-layout">
@@ -17,10 +17,10 @@
       <button type="button" id="add-transaction-btn" class="btn btn-primary btn-block">Add Transaction</button>
       <nav>
         <ul class="nav-list">
-          <li><button type="button" id="nav-overview-btn" class="nav-btn active">Overview</button></li>
-          <li><button type="button" id="nav-cash-flow-btn" class="nav-btn">Cash Flow</button></li>
-          <li><button type="button" id="nav-manage-btn" class="nav-btn">Manage</button></li>
-          <li><button type="button" id="nav-settings-btn" class="nav-btn">Settings</button></li>
+          <li><button type="button" id="nav-overview-btn" class="nav-btn active" data-target="overview-section">Overview</button></li>
+          <li><button type="button" id="nav-cash-flow-btn" class="nav-btn" data-target="cash-flow-section">Cash Flow</button></li>
+          <li><button type="button" id="nav-manage-btn" class="nav-btn" data-target="manage-section">Manage</button></li>
+          <li><button type="button" id="nav-settings-btn" class="nav-btn" data-target="settings-section">Settings</button></li>
         </ul>
       </nav>
     </aside>
@@ -72,6 +72,7 @@
                 <td class="danger">-₱50.00</td>
                 <td>2026-07-13</td>
                 <td>
+                  <!-- TODO: Resolve class for view-button -->
                   <button type="button" class="btn btn-sm btn-outline" data-action="view-transaction" aria-label="View transaction details">View</button>
                 </td>
               </tr>
