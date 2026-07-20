@@ -82,6 +82,7 @@ export function transactionController(transactionData) {
   }
 
   transactionFormView.bindSubmitTransaction(handleNewTransaction);
+  overviewView.bindViewTransaction(handleEditClick);
   cashFlowView.bindEditTransaction(handleEditClick);
   cashFlowView.bindDeleteTransaction(handleDeleteClick);
   loadAndRenderTransactions();
